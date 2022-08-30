@@ -1,12 +1,11 @@
-
 <!doctype html>
 <html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=0.46, maximum-scale=1.0, user-scalable=yes">
-<meta name="description" content="自分で撮影した野鳥の図鑑。Google画像検索、YouTube野鳥動画図鑑検索付き。">
+<meta name="description" content="自分で撮影した野鳥の図鑑。Google画像検索、YouTube野鳥検索付き。">
 <meta property="og:title" content="My 野鳥図鑑（水鳥・猛禽類）">
-<meta property="og:description" content="自分で撮影した野鳥の図鑑。Google画像検索、YouTube野鳥動画図鑑検索付き。">
+<meta property="og:description" content="自分で撮影した野鳥の図鑑。Google画像検索、YouTube野鳥検索付き。">
 <meta property="og:image" content="//ok2nd.sakura.ne.jp/birds/photo/320/tashigi2.jpg">
 <title>My 野鳥図鑑（水鳥・猛禽類）</title>
 <link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho" rel="stylesheet">
@@ -27,20 +26,19 @@ body {
 		background: #fff;
 	}
 }
-#contents {
+.contents {
 	margin: 0 auto;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+/*	justify-content: center;
+	align-items: center;	*/
 }
-#gallery {
+.gallery {
 	/*	↓ これがあると、page-break-after が効かない
 		display: flex;
 		flex-wrap: wrap;
 	*/
-	align-items: center;
+/*	align-items: center;	*/
 /*	width: 1116px; 横幅 写真3つまで */
-	margin: auto;
 }
 h1 {
 	font-weight: normal;
@@ -49,8 +47,16 @@ h1 {
 	margin: 0 0 4px 0;
 	padding: 0;
 }
+.shurui {
+	padding-left: 20px;
+	color: #1E90FF;
+}
 p {
 	text-align: center;
+}
+#goukei {
+	font-size: 20px;
+	font-weight: bold;
 }
 .description {
 	font-size: 14px;
@@ -64,6 +70,8 @@ p {
 	.search1 {display: none;}
 	.search2 {display: none;}
 	#footer {display: none;}
+	h3 {display: none;}
+	.shurui-num {display: none;}
 }
 @media screen {
 	.page-top {display: none;}
@@ -72,344 +80,542 @@ p {
 	color: #f8f8f4;
 	font-size: 16px;
 }
+/* 画像をポップアップ */
+#modal-container {
+	display: none;
+	position: fixed;
+	background: rgba(0, 0, 0, 0.6);
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 99;
+}
+#modal-container > div {
+	display: flex;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
+}
+#modal-container > div > img {
+	max-width: calc(100vw - 60px);
+	max-height: calc(100vh - 60px);
+	padding: 10px;
+	background-color: #fff;
+	box-shadow: 0 3px 18px -4px rgba(0, 0, 0, 0.8);
+	border-radius: 10px;
+}
+img.popup {
+	cursor: pointer;
+}
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
 <h1 class="title">My 野鳥図鑑【水鳥・猛禽類】　（<a href="index.html">→陸鳥</a>）</h1>
-<p class="description">「Zoo」：ZooPicker。「画像」：Google画像検索。「動画」：YouTube野鳥動画図鑑。「Blog」：撮影時ブログ記事。<span style="color:Orangered">印刷は53%、余白なしで。</span></p>
+<p class="description">「Zoo」：ZooPicker。「画像」：Google画像検索。「動画」：YouTube野鳥。「Blog」：撮影時ブログ記事。<span style="color:Orangered">印刷は53%、余白なしで。</span></p>
 <p class="page-top">.....</p>
-<div id="contents">
-	<div id="gallery">
-<div class="box-frame"><div class="in-box"><p class="name">アオアシシギ<a class="search1" target="_blank" href="https://zoopicker.com/animals/6901">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+アオアシシギ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+アオアシシギ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/11/01/142532">Blog</a></p>
-	<a href="photo.html?photo=photo/800/aoashisigi.jpg"><div class="vignette"><img src="photo/320/aoashisigi.jpg"></div></a>
-	<p class="place">大阪南港野鳥園　2021.11</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">アオサギ<a class="search1" target="_blank" href="https://zoopicker.com/animals/8197">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+アオサギ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+アオサギ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2020/02/23/211840">Blog</a></p>
-	<a href="photo.html?photo=photo/800/aosagi.jpg"><div class="vignette"><img src="photo/320/aosagi.jpg"></div></a>
-	<p class="place">兵庫）黒川公民館近く　2020.2</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">イカルチドリ<a class="search1" target="_blank" href="https://zoopicker.com/animals/4355">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+イカルチドリ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+イカルチドリ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/01/25/194359">Blog</a></p>
-	<a href="photo.html?photo=photo/800/ikaruchidori.jpg"><div class="vignette"><img src="photo/320/ikaruchidori.jpg"></div></a>
-	<p class="place">猪名川河川敷　2022.1</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">イソシギ<a class="search1" target="_blank" href="https://zoopicker.com/animals/667">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+イソシギ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+イソシギ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/03/15/163630">Blog</a></p>
-	<a href="photo.html?photo=photo/800/isoshigi3.jpg"><div class="vignette"><img src="photo/320/isoshigi3.jpg"></div></a>
-	<p class="place">石川河川敷　2022.3</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">オオバン<a class="search1" target="_blank" href="https://zoopicker.com/animals/675">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+オオバン+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+オオバン+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/02/13/172840">Blog</a></p>
-	<a href="photo.html?photo=photo/800/ooban2.jpg"><div class="vignette"><img src="photo/320/ooban2.jpg"></div></a>
-	<p class="place">尼崎蓬川　2021.2</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">オカヨシガモ<span style="font-size:12px;">(オス)</span>
-<a class="search1" target="_blank" href="https://zoopicker.com/animals/817">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+オカヨシガモ+オス">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+オカヨシガモ+オス">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/12/27/163123">Blog</a></p>
-	<a href="photo.html?photo=photo/800/okayoshigamo.jpg"><div class="vignette"><img src="photo/320/okayoshigamo.jpg"></div></a>
-	<p class="place">明石公園　2021.12</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">オカヨシガモ<span style="font-size:12px;">(メス)</span>
-<a class="search1" target="_blank" href="https://zoopicker.com/animals/817">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+オカヨシガモ+メス">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+オカヨシガモ+メス">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/12/27/163123">Blog</a></p>
-	<a href="photo.html?photo=photo/800/okayoshigamo-f.jpg"><div class="vignette"><img src="photo/320/okayoshigamo-f.jpg"></div></a>
-	<p class="place">明石公園　2021.12</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">オシドリ<a class="search1" target="_blank" href="https://zoopicker.com/animals/9266">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+オシドリ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+オシドリ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2020/02/11/224407">Blog</a></p>
-	<a href="photo.html?photo=photo/800/oshidori.jpg"><div class="vignette"><img src="photo/320/oshidori.jpg"></div></a>
-	<p class="place">京都宝が池公園　2020.2</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">オナガガモ<span style="font-size:12px;">(オス)</span>
-<a class="search1" target="_blank" href="https://zoopicker.com/animals/674">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+オナガガモ+オス">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+オナガガモ+オス">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/01/165504">Blog</a></p>
-	<a href="photo.html?photo=photo/800/onagagamo.jpg"><div class="vignette"><img src="photo/320/onagagamo.jpg"></div></a>
-	<p class="place">垂水）なぎさの池　2022.2</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">オナガガモ<span style="font-size:12px;">(メス)</span>
-<a class="search1" target="_blank" href="https://zoopicker.com/animals/674">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+オナガガモ+メス">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+オナガガモ+メス">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/08/173119">Blog</a></p>
-	<a href="photo.html?photo=photo/800/onagagamo-f.jpg"><div class="vignette"><img src="photo/320/onagagamo-f.jpg"></div></a>
-	<p class="place">甲子園浜　2022.2</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">カイツブリ<a class="search1" target="_blank" href="https://zoopicker.com/animals/8207">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+カイツブリ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+カイツブリ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/01/25/173507">Blog</a></p>
-	<a href="photo.html?photo=photo/800/kaitsuburi.jpg"><div class="vignette"><img src="photo/320/kaitsuburi.jpg"></div></a>
-	<p class="place">烏原貯水池　2021.3</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">カルガモ<a class="search1" target="_blank" href="https://zoopicker.com/animals/12836">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+カルガモ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+カルガモ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/02/16/164133">Blog</a></p>
-	<a href="photo.html?photo=photo/800/karugamo.jpg"><div class="vignette"><img src="photo/320/karugamo.jpg"></div></a>
-	<p class="place">武庫川河川敷　2021.2</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">カワウ<a class="search1" target="_blank" href="https://zoopicker.com/animals/9613">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+カワウ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+カワウ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/02/07/165524">Blog</a></p>
-	<a href="photo.html?photo=photo/800/kawau.jpg"><div class="vignette"><img src="photo/320/kawau.jpg"></div></a>
-	<p class="place">武田尾　2021.2</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">カンムリカイツブリ<a class="search1" target="_blank" href="https://zoopicker.com/animals/679">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+カンムリカイツブリ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+カンムリカイツブリ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/01/07/215312">Blog</a></p>
-	<a href="photo.html?photo=photo/800/kanmuri.jpg"><div class="vignette"><img src="photo/320/kanmuri.jpg"></div></a>
-	<p class="place">加古大池　2022.1</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">キンクロハジロ<a class="search1" target="_blank" href="https://zoopicker.com/animals/847">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+キンクロハジロ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+キンクロハジロ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/01/25/173507">Blog</a></p>
-	<a href="photo.html?photo=photo/800/kinkurohajiro.jpg"><div class="vignette"><img src="photo/320/kinkurohajiro.jpg"></div></a>
-	<p class="place">烏原貯水池　2021.3</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">クロツラヘラサギ<a class="search1" target="_blank" href="https://zoopicker.com/animals/5380">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+クロツラヘラサギ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+クロツラヘラサギ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/26/220246">Blog</a></p>
-	<a href="photo.html?photo=photo/800/kurotsuraherasagi.jpg"><div class="vignette"><img src="photo/320/kurotsuraherasagi.jpg"></div></a>
-	<p class="place">江井ヶ島　2022.2</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">コウノトリ<a class="search1" target="_blank" href="https://zoopicker.com/animals/13018">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+コウノトリ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+コウノトリ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/28/182814">Blog</a></p>
-	<a href="photo.html?photo=photo/800/kounotori.jpg"><div class="vignette"><img src="photo/320/kounotori.jpg"></div></a>
-	<p class="place">松陰新田　2022.2</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">コガモ<a class="search1" target="_blank" href="https://zoopicker.com/animals/7563">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+コガモ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+コガモ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/02/07/165524">Blog</a></p>
-	<a href="photo.html?photo=photo/800/kogamo.jpg"><div class="vignette"><img src="photo/320/kogamo.jpg"></div></a>
-	<p class="place">武田尾　2021.2</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">コサギ<a class="search1" target="_blank" href="https://zoopicker.com/animals/7938">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+コサギ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+コサギ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/02/16/164133">Blog</a></p>
-	<a href="photo.html?photo=photo/800/kosagi.jpg"><div class="vignette"><img src="photo/320/kosagi.jpg"></div></a>
-	<p class="place">武庫川河川敷　2021.2</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">コチドリ<a class="search1" target="_blank" href="https://zoopicker.com/animals/8372">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+コチドリ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+コチドリ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/26/220246">Blog</a></p>
-	<a href="photo.html?photo=photo/800/kochidori.jpg"><div class="vignette"><img src="photo/320/kochidori.jpg"></div></a>
-	<p class="place">江井ヶ島　2022.2</p>
-</div></div>
-	<!-- ********* 20個単位 改頁 page:2 ********* -->
-<h3 class="break"></h3>
-<p class="page-top">.....</p>
-<div class="box-frame"><div class="in-box"><p class="name">ゴイサギ<a class="search1" target="_blank" href="https://zoopicker.com/animals/12595">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ゴイサギ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+ゴイサギ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/02/11/215502">Blog</a></p>
-	<a href="photo.html?photo=photo/800/goisagi.jpg"><div class="vignette"><img src="photo/320/goisagi.jpg"></div></a>
-	<p class="place">明石公園　2021.2</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">シロチドリ<a class="search1" target="_blank" href="https://zoopicker.com/animals/1127">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+シロチドリ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+シロチドリ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/04/16/193902">Blog</a></p>
-	<a href="photo.html?photo=photo/800/shirochidori.jpg"><div class="vignette"><img src="photo/320/shirochidori.jpg"></div></a>
-	<p class="place">江井島海岸　2022.4</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">スズガモ<a class="search1" target="_blank" href="https://zoopicker.com/animals/9879">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+スズガモ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+スズガモ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/02/11/215441">Blog</a></p>
-	<a href="photo.html?photo=photo/800/suzugamo.jpg"><div class="vignette"><img src="photo/320/suzugamo.jpg"></div></a>
-	<p class="place">御厨神社（二見梅林）　2021.2</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">ズグロカモメ<a class="search1" target="_blank" href="https://zoopicker.com/animals/4348">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ズグロカモメ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+ズグロカモメ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/03/08/212845">Blog</a></p>
-	<a href="photo.html?photo=photo/800/zugurokamome.jpg"><div class="vignette"><img src="photo/320/zugurokamome.jpg"></div></a>
-	<p class="place">加古川河口　2022.3</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">セイタカシギ<a class="search1" target="_blank" href="https://zoopicker.com/animals/6512">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+セイタカシギ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+セイタカシギ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/04/16/193902">Blog</a></p>
-	<a href="photo.html?photo=photo/800/seitakashigi.jpg"><div class="vignette"><img src="photo/320/seitakashigi.jpg"></div></a>
-	<p class="place">西江井ヶ島ため池　2022.4</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">セグロカモメ<a class="search1" target="_blank" href="https://zoopicker.com/animals/6963">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+セグロカモメ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+セグロカモメ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/01/25/194359">Blog</a></p>
-	<a href="photo.html?photo=photo/800/segurokamome.jpg"><div class="vignette"><img src="photo/320/segurokamome.jpg"></div></a>
-	<p class="place">猪名川河川敷　2022.1</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">タゲリ<a class="search1" target="_blank" href="https://zoopicker.com/animals/743">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+タゲリ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+タゲリ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/26/220246">Blog</a></p>
-	<a href="photo.html?photo=photo/800/tageri.jpg"><div class="vignette"><img src="photo/320/tageri.jpg"></div></a>
-	<p class="place">江井ヶ島　2022.2</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">タシギ<a class="search1" target="_blank" href="https://zoopicker.com/animals/6887">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+タシギ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+タシギ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/26/220246">Blog</a></p>
-	<a href="photo.html?photo=photo/800/tashigi2.jpg"><div class="vignette"><img src="photo/320/tashigi2.jpg"></div></a>
-	<p class="place">江井ヶ島　2022.2</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">ダイサギ<a class="search1" target="_blank" href="https://zoopicker.com/animals/7149">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ダイサギ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+ダイサギ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/03/31/224122">Blog</a></p>
-	<a href="photo.html?photo=photo/800/daisagi.jpg"><div class="vignette"><img src="photo/320/daisagi.jpg"></div></a>
-	<p class="place">武庫川さくら回廊　2021.3</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">チョウゲンボウ<a class="search1" target="_blank" href="https://zoopicker.com/animals/9705">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+チョウゲンボウ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+チョウゲンボウ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/12/09/204224">Blog</a></p>
-	<a href="photo.html?photo=photo/800/chogenbou.jpg"><div class="vignette"><img src="photo/320/chogenbou.jpg"></div></a>
-	<p class="place">なるかわ園地　2021.12</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">トビ<a class="search1" target="_blank" href="https://zoopicker.com/animals/9101">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+トビ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+トビ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/03/15/163630">Blog</a></p>
-	<a href="photo.html?photo=photo/800/tobi.jpg"><div class="vignette"><img src="photo/320/tobi.jpg"></div></a>
-	<p class="place">石川河川敷　2022.3</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">ハイイロガン<a class="search1" target="_blank" href="https://zoopicker.com/animals/863">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ハイイロガン+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+ハイイロガン+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/01/07/215312">Blog</a></p>
-	<a href="photo.html?photo=photo/800/haiirogan.jpg"><div class="vignette"><img src="photo/320/haiirogan.jpg"></div></a>
-	<p class="place">加古大池　2022.1</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">ハイタカ<a class="search1" target="_blank" href="https://zoopicker.com/animals/8717">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ハイタカ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+ハイタカ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/12/21/171043">Blog</a></p>
-	<a href="photo.html?photo=photo/800/haitaka.jpg"><div class="vignette"><img src="photo/320/haitaka.jpg"></div></a>
-	<p class="place">大阪城公園　2021.12</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">ハシビロガモ<span style="font-size:12px;">(オス)</span>
-<a class="search1" target="_blank" href="https://zoopicker.com/animals/8099">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ハシビロガモ+オス">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+ハシビロガモ+オス">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/03/03/163520">Blog</a></p>
-	<a href="photo.html?photo=photo/800/hashibirogamo3.jpg"><div class="vignette"><img src="photo/320/hashibirogamo3.jpg"></div></a>
-	<p class="place">大阪城公園　2022.3</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">ハシビロガモ<span style="font-size:12px;">(メス)</span>
-<a class="search1" target="_blank" href="https://zoopicker.com/animals/8099">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ハシビロガモ+メス">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+ハシビロガモ+メス">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/03/11/175140">Blog</a></p>
-	<a href="photo.html?photo=photo/800/hashibirogamo-f.jpg"><div class="vignette"><img src="photo/320/hashibirogamo-f.jpg"></div></a>
-	<p class="place">服部緑地　2021.3</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">ハジロカイツブリ<a class="search1" target="_blank" href="https://zoopicker.com/animals/4387">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ハジロカイツブリ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+ハジロカイツブリ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/08/173119">Blog</a></p>
-	<a href="photo.html?photo=photo/800/hajirokaitsuburi.jpg"><div class="vignette"><img src="photo/320/hajirokaitsuburi.jpg"></div></a>
-	<p class="place">甲子園浜　2022.2</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">バン<a class="search1" target="_blank" href="https://zoopicker.com/animals/13272">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+バン+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+バン+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/01/27/225732">Blog</a></p>
-	<a href="photo.html?photo=photo/800/ban.jpg"><div class="vignette"><img src="photo/320/ban.jpg"></div></a>
-	<p class="place">奥須磨公園　2021.1</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">ヒドリガモ<a class="search1" target="_blank" href="https://zoopicker.com/animals/7040">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ヒドリガモ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+ヒドリガモ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/01/165504">Blog</a></p>
-	<a href="photo.html?photo=photo/800/hidorigamo3.jpg"><div class="vignette"><img src="photo/320/hidorigamo3.jpg"></div></a>
-	<p class="place">平磯緑地　2022.2</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">ホシハジロ<span style="font-size:12px;">(オス)</span>
-<a class="search1" target="_blank" href="https://zoopicker.com/animals/627">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ホシハジロ+オス">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+ホシハジロ+オス">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/02/13/172840">Blog</a></p>
-	<a href="photo.html?photo=photo/800/hoshihajiro.jpg"><div class="vignette"><img src="photo/320/hoshihajiro.jpg"></div></a>
-	<p class="place">尼崎蓬川　2021.2</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">ホシハジロ<span style="font-size:12px;">(メス)</span>
-<a class="search1" target="_blank" href="https://zoopicker.com/animals/627">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ホシハジロ+メス">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+ホシハジロ+メス">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/01/08/232554">Blog</a></p>
-	<a href="photo.html?photo=photo/800/hoshihajiro-f2.jpg"><div class="vignette"><img src="photo/320/hoshihajiro-f2.jpg"></div></a>
-	<p class="place">有馬富士公園　2022.1</p>
-</div></div>
-	<!-- ********* 20個単位 改頁 page:3 ********* -->
-<h3 class="break"></h3>
-<p class="page-top">.....</p>
-<div class="box-frame"><div class="in-box"><p class="name">マガモ<a class="search1" target="_blank" href="https://zoopicker.com/animals/9552">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+マガモ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+マガモ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/03/10/213808">Blog</a></p>
-	<a href="photo.html?photo=photo/800/magamo2.jpg"><div class="vignette"><img src="photo/320/magamo2.jpg"></div></a>
-	<p class="place">山田池公園　2022.3</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">ミサゴ<a class="search1" target="_blank" href="https://zoopicker.com/animals/6983">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ミサゴ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+ミサゴ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/03/08/212845">Blog</a></p>
-	<a href="photo.html?photo=photo/800/misago.jpg"><div class="vignette"><img src="photo/320/misago.jpg"></div></a>
-	<p class="place">加古川河口　2022.3</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">ヨシガモ<a class="search1" target="_blank" href="https://zoopicker.com/animals/5060">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ヨシガモ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+ヨシガモ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/28/182814">Blog</a></p>
-	<a href="photo.html?photo=photo/800/yoshigamo2.jpg"><div class="vignette"><img src="photo/320/yoshigamo2.jpg"></div></a>
-	<p class="place">松陰新田　2022.2</p>
-</div></div>
-<div class="box-frame"><div class="in-box"><p class="name">ヨシゴイ<a class="search1" target="_blank" href="https://zoopicker.com/animals/6413">Zoo</a>
-	<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ヨシゴイ+">画像</a>
-	<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥動物図鑑+ヨシゴイ+">動画</a>
-	<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/11/07/172452">Blog</a></p>
-	<a href="photo.html?photo=photo/800/yoshigoi.jpg"><div class="vignette"><img src="photo/320/yoshigoi.jpg"></div></a>
-	<p class="place">大泉緑地　2021.11</p>
-</div></div>
-	</div>
+<h3 class="shurui">－－－－－【シギ】－－－－－</h3>
+<div class="contents">
+	<div class="gallery">
+	<div class="box-frame"><div class="in-box"><p class="name">アオアシシギ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/6901">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+アオアシシギ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+アオアシシギ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/11/01/142532">Blog</a></p>
+		<img class="popup" src="photo/320/aoashisigi.jpg">
+		<p class="place">大阪南港野鳥園　2021.11<!--	(1) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">イソシギ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/667">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+イソシギ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+イソシギ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/03/15/163630">Blog</a></p>
+		<img class="popup" src="photo/320/isoshigi3.jpg">
+		<p class="place">石川河川敷　2022.3<!--	(2) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">キアシシギ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/6910">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+キアシシギ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+キアシシギ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/05/04/164329">Blog</a></p>
+		<img class="popup" src="photo/320/kiashisigi.jpg">
+		<p class="place">甲子園浜　2022.5<!--	(3) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">セイタカシギ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/6512">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+セイタカシギ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+セイタカシギ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/04/16/193902">Blog</a></p>
+		<img class="popup" src="photo/320/seitakashigi.jpg">
+		<p class="place">西江井ヶ島ため池　2022.4<!--	(4) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">タシギ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/6887">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+タシギ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+タシギ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/26/220246">Blog</a></p>
+		<img class="popup" src="photo/320/tashigi2.jpg">
+		<p class="place">江井ヶ島　2022.2<!--	(5) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">チュウシャクシギ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/6865">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+チュウシャクシギ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+チュウシャクシギ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/04/30/153958">Blog</a></p>
+		<img class="popup" src="photo/320/chushakusigi.jpg">
+		<p class="place">加古川河口　2022.4<!--	(6) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">トウネン	<a class="search1" target="_blank" href="https://zoopicker.com/animals/6292">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+トウネン+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+トウネン+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/08/28/173857">Blog</a></p>
+		<img class="popup" src="photo/320/tounen.jpg">
+		<p class="place">加古大池　2022.8<!--	(7) -->
+</p>
+	</div></div>
+		</div>
 </div>
+<p class="shurui-num">【7 種類】【オス・メス別 7 種類】</p>
+<h3 class="shurui">－－－－－【チドリ】－－－－－</h3>
+<div class="contents">
+	<div class="gallery">
+	<div class="box-frame"><div class="in-box"><p class="name">イカルチドリ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/4355">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+イカルチドリ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+イカルチドリ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/01/25/194359">Blog</a></p>
+		<img class="popup" src="photo/320/ikaruchidori.jpg">
+		<p class="place">猪名川河川敷　2022.1<!--	(9) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">コチドリ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/8372">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+コチドリ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+コチドリ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/26/220246">Blog</a></p>
+		<img class="popup" src="photo/320/kochidori.jpg">
+		<p class="place">江井ヶ島　2022.2<!--	(10) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">シロチドリ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/1127">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+シロチドリ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+シロチドリ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/04/16/193902">Blog</a></p>
+		<img class="popup" src="photo/320/shirochidori.jpg">
+		<p class="place">江井島海岸　2022.4<!--	(11) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">ムナグロ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/6864">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ムナグロ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+ムナグロ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/04/30/153958">Blog</a></p>
+		<img class="popup" src="photo/320/munaguro.jpg">
+		<p class="place">加古川河口　2022.4<!--	(12) -->
+</p>
+	</div></div>
+		</div>
+</div>
+<p class="shurui-num">【4 種類】【オス・メス別 4 種類】</p>
+<h3 class="shurui">－－－－－【カモ】－－－－－</h3>
+<div class="contents">
+	<div class="gallery">
+	<div class="box-frame"><div class="in-box"><p class="name">ウミアイサ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/12637">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ウミアイサ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+ウミアイサ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/05/06/214907">Blog</a></p>
+		<img class="popup" src="photo/320/umiaisa.jpg">
+		<p class="place">加古川河口　2022.5<!--	(13) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">オカヨシガモ	<span style="font-size:12px;">(オス)</span>
+	<a class="search1" target="_blank" href="https://zoopicker.com/animals/817">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+オカヨシガモ+オス">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+オカヨシガモ+オス">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/12/27/163123">Blog</a></p>
+		<img class="popup" src="photo/320/okayoshigamo.jpg">
+		<p class="place">明石公園　2021.12<!--	(14) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">オカヨシガモ	<span style="font-size:12px;">(メス)</span>
+	<a class="search1" target="_blank" href="https://zoopicker.com/animals/817">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+オカヨシガモ+メス">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+オカヨシガモ+メス">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/12/27/163123">Blog</a></p>
+		<img class="popup" src="photo/320/okayoshigamo-f.jpg">
+		<p class="place">明石公園　2021.12<!--	(15) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">オシドリ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/9266">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+オシドリ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+オシドリ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2020/02/11/224407">Blog</a></p>
+		<img class="popup" src="photo/320/oshidori.jpg">
+		<p class="place">京都宝が池公園　2020.2<!--	(16) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">オナガガモ	<span style="font-size:12px;">(オス)</span>
+	<a class="search1" target="_blank" href="https://zoopicker.com/animals/674">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+オナガガモ+オス">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+オナガガモ+オス">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/01/165504">Blog</a></p>
+		<img class="popup" src="photo/320/onagagamo.jpg">
+		<p class="place">垂水）なぎさの池　2022.2<!--	(17) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">オナガガモ	<span style="font-size:12px;">(メス)</span>
+	<a class="search1" target="_blank" href="https://zoopicker.com/animals/674">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+オナガガモ+メス">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+オナガガモ+メス">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/08/173119">Blog</a></p>
+		<img class="popup" src="photo/320/onagagamo-f.jpg">
+		<p class="place">甲子園浜　2022.2<!--	(18) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">カルガモ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/12836">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+カルガモ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+カルガモ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/02/16/164133">Blog</a></p>
+		<img class="popup" src="photo/320/karugamo.jpg">
+		<p class="place">武庫川河川敷　2021.2<!--	(19) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">キンクロハジロ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/847">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+キンクロハジロ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+キンクロハジロ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/01/25/173507">Blog</a></p>
+		<img class="popup" src="photo/320/kinkurohajiro.jpg">
+		<p class="place">烏原貯水池　2021.3<!--	(20) -->
+</p>
+	</div></div>
+			<!-- ********* 20個単位 改頁 page:2 ********* -->
+	<h4 class="break"><!-- 改頁 --></h4>
+	<p class="page-top">.....</p>
+		<div class="box-frame"><div class="in-box"><p class="name">コガモ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/7563">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+コガモ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+コガモ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/02/07/165524">Blog</a></p>
+		<img class="popup" src="photo/320/kogamo.jpg">
+		<p class="place">武田尾　2021.2<!--	(1) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">スズガモ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/9879">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+スズガモ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+スズガモ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/02/11/215441">Blog</a></p>
+		<img class="popup" src="photo/320/suzugamo.jpg">
+		<p class="place">御厨神社（二見梅林）　2021.2<!--	(2) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">ハイイロガン	<a class="search1" target="_blank" href="https://zoopicker.com/animals/863">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ハイイロガン+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+ハイイロガン+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/01/07/215312">Blog</a></p>
+		<img class="popup" src="photo/320/haiirogan.jpg">
+		<p class="place">加古大池　2022.1<!--	(3) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">ハシビロガモ	<span style="font-size:12px;">(オス)</span>
+	<a class="search1" target="_blank" href="https://zoopicker.com/animals/8099">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ハシビロガモ+オス">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+ハシビロガモ+オス">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/03/03/163520">Blog</a></p>
+		<img class="popup" src="photo/320/hashibirogamo3.jpg">
+		<p class="place">大阪城公園　2022.3<!--	(4) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">ハシビロガモ	<span style="font-size:12px;">(メス)</span>
+	<a class="search1" target="_blank" href="https://zoopicker.com/animals/8099">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ハシビロガモ+メス">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+ハシビロガモ+メス">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/03/11/175140">Blog</a></p>
+		<img class="popup" src="photo/320/hashibirogamo-f.jpg">
+		<p class="place">服部緑地　2021.3<!--	(5) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">ヒドリガモ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/7040">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ヒドリガモ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+ヒドリガモ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/01/165504">Blog</a></p>
+		<img class="popup" src="photo/320/hidorigamo3.jpg">
+		<p class="place">平磯緑地　2022.2<!--	(6) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">ホシハジロ	<span style="font-size:12px;">(オス)</span>
+	<a class="search1" target="_blank" href="https://zoopicker.com/animals/627">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ホシハジロ+オス">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+ホシハジロ+オス">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/02/13/172840">Blog</a></p>
+		<img class="popup" src="photo/320/hoshihajiro.jpg">
+		<p class="place">尼崎蓬川　2021.2<!--	(7) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">ホシハジロ	<span style="font-size:12px;">(メス)</span>
+	<a class="search1" target="_blank" href="https://zoopicker.com/animals/627">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ホシハジロ+メス">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+ホシハジロ+メス">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/01/08/232554">Blog</a></p>
+		<img class="popup" src="photo/320/hoshihajiro-f2.jpg">
+		<p class="place">有馬富士公園　2022.1<!--	(8) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">マガモ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/9552">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+マガモ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+マガモ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/03/10/213808">Blog</a></p>
+		<img class="popup" src="photo/320/magamo2.jpg">
+		<p class="place">山田池公園　2022.3<!--	(9) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">ヨシガモ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/5060">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ヨシガモ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+ヨシガモ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/28/182814">Blog</a></p>
+		<img class="popup" src="photo/320/yoshigamo2.jpg">
+		<p class="place">松陰新田　2022.2<!--	(10) -->
+</p>
+	</div></div>
+		</div>
+</div>
+<p class="shurui-num">【14 種類】【オス・メス別 18 種類】</p>
+<h3 class="shurui">－－－－－【カモメ】－－－－－</h3>
+<div class="contents">
+	<div class="gallery">
+	<div class="box-frame"><div class="in-box"><p class="name">ウミネコ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/6176">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ウミネコ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+ウミネコ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/08/22/161226">Blog</a></p>
+		<img class="popup" src="photo/320/umineko.jpg">
+		<p class="place">明石市瀬戸川　2022.8<!--	(13) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">ズグロカモメ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/4348">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ズグロカモメ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+ズグロカモメ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/03/08/212845">Blog</a></p>
+		<img class="popup" src="photo/320/zugurokamome.jpg">
+		<p class="place">加古川河口　2022.3<!--	(14) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">セグロカモメ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/6963">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+セグロカモメ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+セグロカモメ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/01/25/194359">Blog</a></p>
+		<img class="popup" src="photo/320/segurokamome.jpg">
+		<p class="place">猪名川河川敷　2022.1<!--	(15) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">ユリカモメ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/7619">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ユリカモメ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+ユリカモメ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/08/173119">Blog</a></p>
+		<img class="popup" src="photo/320/yurikamome.jpg">
+		<p class="place">甲子園浜　2022.2<!--	(16) -->
+</p>
+	</div></div>
+		</div>
+</div>
+<p class="shurui-num">【4 種類】【オス・メス別 4 種類】</p>
+<h3 class="shurui">－－－－－【カイツブリ】－－－－－</h3>
+<div class="contents">
+	<div class="gallery">
+	<div class="box-frame"><div class="in-box"><p class="name">カイツブリ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/8207">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+カイツブリ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+カイツブリ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/01/25/173507">Blog</a></p>
+		<img class="popup" src="photo/320/kaitsuburi.jpg">
+		<p class="place">烏原貯水池　2021.3<!--	(17) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">カンムリカイツブリ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/679">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+カンムリカイツブリ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+カンムリカイツブリ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/01/07/215312">Blog</a></p>
+		<img class="popup" src="photo/320/kanmuri.jpg">
+		<p class="place">加古大池　2022.1<!--	(18) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">ハジロカイツブリ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/4387">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ハジロカイツブリ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+ハジロカイツブリ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/08/173119">Blog</a></p>
+		<img class="popup" src="photo/320/hajirokaitsuburi.jpg">
+		<p class="place">甲子園浜　2022.2<!--	(19) -->
+</p>
+	</div></div>
+		</div>
+</div>
+<p class="shurui-num">【3 種類】【オス・メス別 3 種類】</p>
+<h3 class="shurui">－－－－－【サギ】－－－－－</h3>
+<div class="contents">
+	<div class="gallery">
+		<!-- ********* 20個単位 改頁 page:2 ********* -->
+	<h4 class="break"><!-- 改頁 --></h4>
+	<p class="page-top">.....</p>
+		<div class="box-frame"><div class="in-box"><p class="name">アオサギ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/8197">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+アオサギ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+アオサギ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2020/02/23/211840">Blog</a></p>
+		<img class="popup" src="photo/320/aosagi.jpg">
+		<p class="place">兵庫）黒川公民館近く　2020.2<!--	(1) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">アマサギ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/7144">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+アマサギ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+アマサギ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/05/09/220305">Blog</a></p>
+		<img class="popup" src="photo/320/amasagi.jpg">
+		<p class="place">いなみ野ため池　2022.5<!--	(2) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">クロツラヘラサギ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/5380">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+クロツラヘラサギ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+クロツラヘラサギ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/26/220246">Blog</a></p>
+		<img class="popup" src="photo/320/kurotsuraherasagi.jpg">
+		<p class="place">江井ヶ島　2022.2<!--	(3) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">コサギ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/7938">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+コサギ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+コサギ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/02/16/164133">Blog</a></p>
+		<img class="popup" src="photo/320/kosagi.jpg">
+		<p class="place">武庫川河川敷　2021.2<!--	(4) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">ゴイサギ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/12595">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ゴイサギ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+ゴイサギ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/02/11/215502">Blog</a></p>
+		<img class="popup" src="photo/320/goisagi.jpg">
+		<p class="place">明石公園　2021.2<!--	(5) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">ダイサギ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/7149">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ダイサギ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+ダイサギ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/03/31/224122">Blog</a></p>
+		<img class="popup" src="photo/320/daisagi.jpg">
+		<p class="place">武庫川さくら回廊　2021.3<!--	(6) -->
+</p>
+	</div></div>
+		</div>
+</div>
+<p class="shurui-num">【6 種類】【オス・メス別 6 種類】</p>
+<h3 class="shurui">－－－－－【水鳥その他】－－－－－</h3>
+<div class="contents">
+	<div class="gallery">
+	<div class="box-frame"><div class="in-box"><p class="name">オオバン	<a class="search1" target="_blank" href="https://zoopicker.com/animals/675">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+オオバン+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+オオバン+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/02/13/172840">Blog</a></p>
+		<img class="popup" src="photo/320/ooban2.jpg">
+		<p class="place">尼崎蓬川　2021.2<!--	(9) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">カワウ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/9613">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+カワウ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+カワウ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/02/07/165524">Blog</a></p>
+		<img class="popup" src="photo/320/kawau.jpg">
+		<p class="place">武田尾　2021.2<!--	(10) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">コウノトリ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/13018">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+コウノトリ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+コウノトリ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/28/182814">Blog</a></p>
+		<img class="popup" src="photo/320/kounotori.jpg">
+		<p class="place">松陰新田　2022.2<!--	(11) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">タゲリ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/743">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+タゲリ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+タゲリ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/02/26/220246">Blog</a></p>
+		<img class="popup" src="photo/320/tageri.jpg">
+		<p class="place">江井ヶ島　2022.2<!--	(12) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">バン	<a class="search1" target="_blank" href="https://zoopicker.com/animals/13272">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+バン+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+バン+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/01/27/225732">Blog</a></p>
+		<img class="popup" src="photo/320/ban.jpg">
+		<p class="place">奥須磨公園　2021.1<!--	(13) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">ヨシゴイ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/6413">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ヨシゴイ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+ヨシゴイ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/11/07/172452">Blog</a></p>
+		<img class="popup" src="photo/320/yoshigoi.jpg">
+		<p class="place">大泉緑地　2021.11<!--	(14) -->
+</p>
+	</div></div>
+		</div>
+</div>
+<p class="shurui-num">【6 種類】【オス・メス別 6 種類】</p>
+<h3 class="shurui">－－－－－【猛禽類】－－－－－</h3>
+<div class="contents">
+	<div class="gallery">
+	<div class="box-frame"><div class="in-box"><p class="name">チョウゲンボウ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/9705">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+チョウゲンボウ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+チョウゲンボウ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/12/09/204224">Blog</a></p>
+		<img class="popup" src="photo/320/chogenbou.jpg">
+		<p class="place">なるかわ園地　2021.12<!--	(17) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">トビ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/9101">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+トビ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+トビ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/08/22/161226">Blog</a></p>
+		<img class="popup" src="photo/320/tobi2.jpg">
+		<p class="place">明石市瀬戸川　2022.8<!--	(18) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">ハイタカ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/8717">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ハイタカ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+ハイタカ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2021/12/21/171043">Blog</a></p>
+		<img class="popup" src="photo/320/haitaka.jpg">
+		<p class="place">大阪城公園　2021.12<!--	(19) -->
+</p>
+	</div></div>
+		<div class="box-frame"><div class="in-box"><p class="name">ミサゴ	<a class="search1" target="_blank" href="https://zoopicker.com/animals/6983">Zoo</a>
+		<a class="search2" target="_blank" href="https://www.google.com/search?tbm=isch&q=野鳥+ミサゴ+">画像</a>
+		<a class="search2" target="_blank" href="https://www.youtube.com/results?search_query=野鳥+ミサゴ+">動画</a>
+		<a class="search2" target="_blank" href="https://2ndart.hatenablog.com/entry/2022/03/08/212845">Blog</a></p>
+		<img class="popup" src="photo/320/misago.jpg">
+		<p class="place">加古川河口　2022.3<!--	(20) -->
+</p>
+	</div></div>
+		</div>
+</div>
+<p class="shurui-num">【4 種類】【オス・メス別 4 種類】</p>
+	<p id="goukei">【合計：48 種類】</p>
 <div id="footer">
-<p id="">【40 種類】【オス・メス別 44 種類】</p>
 <div style="clear:both;padding:10px 0 0 0;text-align:center;">
+<h3><a href="index.html">→→→ 陸鳥</a></h3>
 <a href="https://2ndart.hatenablog.com/" target="_blank">≪晴歩雨描≫</a>
-<a href="https://2ndart.hatenablog.com/archive/category/%E5%8B%95%E7%89%A9%E3%83%BB%E9%B3%A5%E3%83%BB%E6%98%86%E8%99%AB" target="_blank" style="margin-left:6px;">ブログ：動物・鳥・昆虫</a>
+<a href="https://2ndart.hatenablog.com/archive/category/野鳥" target="_blank" style="margin-left:6px;">ブログ：野鳥</a>
 </div>
 </div>
+<div id="modal-container">
+	<div><img src=""></div>
+</div>
+<script>
+const modal = $('#modal-container');
+const img = modal.find('img');
+$('img.popup').each(function(index) {
+	$(this).click(function() {
+		img.attr('src', $(this).attr('src').replace('320', '800'));
+		modal.show();
+	})
+});
+modal.click(function() {
+	$(this).hide();
+});
+</script>
 </body>
 </html>
