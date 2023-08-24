@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=0.46, maximum-scale=1.0, user-scalable=yes">
 <meta name="description" content="自分で撮影した野鳥の図鑑。Google画像検索、YouTube野鳥検索付き。">
 <meta property="og:title" content="My 野鳥図鑑（陸鳥）">
 <meta property="og:description" content="自分で撮影した野鳥の図鑑。Google画像検索、YouTube野鳥検索付き。">
@@ -25,20 +26,19 @@ body {
 		background: #fff;
 	}
 }
-#contents {
+.contents {
 	margin: 0 auto;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+/*	justify-content: center;
+	align-items: center;	*/
 }
-#gallery {
+.gallery {
 	/*	↓ これがあると、page-break-after が効かない
 		display: flex;
 		flex-wrap: wrap;
 	*/
-	align-items: center;
+/*	align-items: center;	*/
 /*	width: 1116px; 横幅 写真3つまで */
-	margin: auto;
 }
 h1 {
 	font-weight: normal;
@@ -46,6 +46,10 @@ h1 {
 	font-size: 18px;
 	margin: 0 0 4px 0;
 	padding: 0;
+}
+.shurui {
+	padding-left: 20px;
+	color: #1E90FF;
 }
 p {
 	text-align: center;
@@ -66,6 +70,8 @@ p {
 	.search1 {display: none;}
 	.search2 {display: none;}
 	#footer {display: none;}
+	h3 {display: none;}
+	.shurui-num {display: none;}
 }
 @media screen {
 	.page-top {display: none;}
