@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=0.46, maximum-scale=1.0, user-scalable=yes">
+<meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=yes">
 <meta name="description" content="自分で撮影した野鳥の図鑑。Google画像検索、YouTube野鳥検索付き。">
 <meta property="og:title" content="My 野鳥図鑑（水鳥・猛禽類）">
 <meta property="og:description" content="自分で撮影した野鳥の図鑑。Google画像検索、YouTube野鳥検索付き。">
@@ -14,7 +14,7 @@
 body {
 	color: #666;
 	font-family: 'Sawarabi Mincho', Helvetica, Arial, sans-serif;
-	margin: 20px 0 60px 20px;
+	padding: 10px 10px 60px 10px;
 }
 @media screen {
 	body {
@@ -43,23 +43,32 @@ body {
 h1 {
 	font-weight: normal;
 	text-align: center;
-	font-size: 18px;
+	font-size: 16px;
 	margin: 0 0 4px 0;
 	padding: 0;
 }
+h3 {
+	font-size: 14px;
+}
 .shurui {
-	padding-left: 20px;
+	padding-left: 12px;
 	color: #1E90FF;
 }
 p {
 	text-align: center;
 }
+.shurui-num {
+	font-size: 14px;
+}
 #goukei {
-	font-size: 20px;
+	font-size: 14px;
 	font-weight: bold;
 }
 .description {
-	font-size: 14px;
+	font-size: 12px;
+}
+#footer {
+	clear: both;
 }
 .break {
 	page-break-after: always;
@@ -112,7 +121,7 @@ img.popup {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
-<h1 class="title">My 野鳥図鑑【水鳥・猛禽類】　（<a href="index.html">→ 陸鳥</a>）</h1>
+<h1 class="title">My 野鳥図鑑【水鳥・猛禽類】（<a href="index.html">→ 陸鳥</a>）</h1>
 <p class="description">「Zoo」：ZooPicker。「画像」：Google画像検索。「動画」：YouTube野鳥。「Blog」：撮影時ブログ記事。<span style="color:Orangered">印刷は53%、余白なしで。</span></p>
 <p class="page-top">.....</p>
 <h3 class="shurui">－－－－－【シギ科】－－－－－</h3>
@@ -954,7 +963,7 @@ img.popup {
 	<p id="goukei">【合計：79 種類】</p>
 <div id="footer">
 <div style="clear:both;padding:10px 0 0 0;text-align:center;">
-<h3><a href="index.html">→→→ 陸鳥</a></h3>
+<p><a href="index.html">→→→ 陸鳥</a></p>
 <a href="https://2ndart.hatenablog.com/archive" target="_blank">≪晴歩雨描≫</a>
 <a href="https://2ndart.hatenablog.com/archive/category/野鳥" target="_blank" style="margin-left:6px;">ブログ：野鳥</a>
 </div>
