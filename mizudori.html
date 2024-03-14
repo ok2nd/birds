@@ -1,10 +1,6 @@
-
 <!doctype html>
 <html lang="ja">
 <head>
-<!--
-	Github:	.php → .html
--->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=yes">
 <meta name="description" content="自分で撮影した野鳥の図鑑。Google画像検索、YouTube野鳥検索付き。">
@@ -125,7 +121,7 @@ img.popup {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
-<h1 class="title">My 野鳥図鑑【水鳥・猛禽類】（<a href="index.html">→ 陸鳥</a>）</h1>
+<h1 class="title">My 野鳥図鑑【水鳥・猛禽類 <span id="birds_total"></span>種】（<a href="index.html">→ 陸鳥</a>）</h1>
 <p class="description">
 
 <a href="#index">Index</a>　<a href="#シギ">シギ</a>　<a href="#チドリ">チドリ</a>　<a href="#カイツブリ科">カイツブリ科</a>　<a href="#カモ">カモ科</a>　<a href="#カモメ">カモメ科</a>　<a href="#サギ">サギ科</a>　<a href="#トキ科">トキ科</a>　<a href="#クイナ科">クイナ科</a>　<a href="#その他">その他</a>　<a href="#猛禽類">猛禽類</a>
@@ -1229,6 +1225,8 @@ $('img.popup').each(function(index) {
 modal.click(function() {
 	$(this).hide();
 });
+var birds_total = document.getElementById('birds_total');
+birds_total.innerHTML = '92';
 </script>
 </body>
 </html>

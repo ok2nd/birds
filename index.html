@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="ja">
 <head>
@@ -119,7 +118,7 @@ img.popup {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
-<h1 class="title">My 野鳥図鑑【陸鳥】（<a href="mizudori.html">→ 水鳥・猛禽類</a>）</h1>
+<h1 class="title">My 野鳥図鑑【陸鳥 <span id="birds_total"></span>種】（<a href="mizudori.html">→ 水鳥・猛禽類</a>）</h1>
 <p class="description"><a href="#index">Index</a></p>
 <p class="description">「Zoo」：ZooPicker。「画像」：Google画像検索。「動画」：YouTube野鳥。「Blog」：撮影時ブログ記事。<span style="color:Orangered">印刷は53%、余白なしで。</span></p>
 <p class="page-top">.....</p>
@@ -1084,6 +1083,8 @@ $('img.popup').each(function(index) {
 modal.click(function() {
 	$(this).hide();
 });
+var birds_total = document.getElementById('birds_total');
+birds_total.innerHTML = '98';
 </script>
 </body>
 </html>
