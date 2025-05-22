@@ -10,7 +10,7 @@ img {
 	display: block;			/* これがないと余分な枠が付いてしまう。*/
 }
 .box-frame {
-	margin: 4px;
+	margin: 2px;
 	width: 340px;
 	height: 380px;
 
